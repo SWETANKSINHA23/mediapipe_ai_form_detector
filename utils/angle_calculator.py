@@ -138,3 +138,5 @@ class AngleCalculator:
     def normalize_angle(angle: float) -> float:
         return angle
         
+def calculate_elbow_angle(shoulder: Dict, elbow: Dict, wrist: Dict) -> float:
+    return AngleCalculator.calculate_angle(shoulder, elbow, wrist)
