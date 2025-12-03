@@ -1,0 +1,20 @@
+{
+  "source_video": "w06_rgb.mp4",
+  "source_dataset": "MM-Fit Dataset (Zenodo)",
+  "exercises_detected": [
+    {
+      "exercise_name": "Bicep Curl",
+      "timestamp_start": "00:01",
+      "timestamp_seconds": 1.0,
+      "confidence": 1.0,
+      "output_file": "bicep_curl_1.mp4"
+    },
+    {
+      "exercise_name": "Lateral Raise",
+      "timestamp_start": "00:17",
+      "timestamp_seconds": 17.0,
+      "confidence": 1.0,
+      "output_file": "lateral_raise_1.mp4"
+    }
+  ]
+}
