@@ -143,3 +143,6 @@ def calculate_elbow_angle(shoulder: Dict, elbow: Dict, wrist: Dict) -> float:
 
 def calculate_wrist_shoulder_alignment(wrist: Dict, shoulder: Dict) -> Tuple[bool, float]:
     return AngleCalculator.calculate_vertical_alignment(wrist, shoulder)
+
+def calculate_arm_symmetry(left_wrist: Dict, right_wrist: Dict, nose: Dict) -> Tuple[float, bool]:
+    return AngleCalculator.calculate_symmetry(left_wrist, right_wrist, nose)
