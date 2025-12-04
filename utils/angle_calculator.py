@@ -146,3 +146,71 @@ def calculate_wrist_shoulder_alignment(wrist: Dict, shoulder: Dict) -> Tuple[boo
 
 def calculate_arm_symmetry(left_wrist: Dict, right_wrist: Dict, nose: Dict) -> Tuple[float, bool]:
     return AngleCalculator.calculate_symmetry(left_wrist, right_wrist, nose)
+
+def test_angle_calculator():
+    def safe_print(text):
+        try:
+            print(text)
+        except UnicodeEncodeError:
+            print(text.encode('utf-8', errors='ignore').decode('utf-8'))
+
+
+    print("="*70)
+    print("TESTING ANGLE CALCULATOR")
+    print("="*70)
+    
+    shoulder = {'x': 200, 'y': 150, 'z': 0, 'visibility': 0.9}
+    elbow = {'x': 180, 'y': 250, 'z': 0.1, 'visibility': 0.95}
+    wrist = {'x': 170, 'y': 180, 'z': 0.15, 'visibility': 0.85}
+    
+    elbow_angle = AngleCalculator.calculate_angle(shoulder, elbow, wrist)
+    
+    print(f"\n1. Elbow Angle Test:")
+    print(f"   Shoulder: ({shoulder['x']}, {shoulder['y']})")
+    print(f"   Elbow: ({elbow['x']}, {elbow['y']})")
+    print(f"   Wrist: ({wrist['x']}, {wrist['y']})")
+    print(f"   Elbow angle: {elbow_angle:.1f}°")
+    
+    
+    shoulder2 = {'x': 200, 'y': 150, 'z': 0, 'visibility': 0.9}
+    wrist2 = {'x': 100, 'y': 155, 'z': 0, 'visibility': 0.85}
+    
+    is_aligned, y_diff = AngleCalculator.calculate_vertical_alignment(wrist2, shoulder2, threshold_pixels=30)
+    safe_print(f"\n2. Alignment Test (Lateral Raise):")
+    safe_print(f"   Shoulder Y: {shoulder2['y']}")
+    safe_print(f"   Wrist Y: {wrist2['y']}")
+    safe_print(f"   Y difference: {y_diff:.1f} pixels")
+    safe_print(f"   Aligned: {is_aligned} (threshold: 30 pixels)")
+    
+    
+    left_wrist = {'x': 100, 'y': 150, 'z': 0, 'visibility': 0.9}
+    right_wrist = {'x': 300, 'y': 148, 'z': 0, 'visibility': 0.9}
+    center = {'x': 200, 'y': 200, 'z': 0, 'visibility': 1.0}
+    
+    symmetry_score, is_symmetric = AngleCalculator.calculate_symmetry(left_wrist, right_wrist, center)
+    safe_print(f"\n3. Symmetry Test:")
+    safe_print(f"   Left wrist: ({left_wrist['x']}, {left_wrist['y']})")
+    safe_print(f"   Right wrist: ({right_wrist['x']}, {right_wrist['y']})")
+    safe_print(f"   Center: ({center['x']}, {center['y']})")
+    safe_print(f"   Symmetry score: {symmetry_score:.3f} (1.0 = perfect)")
+    safe_print(f"   Is symmetric: {is_symmetric} (threshold: 0.75)")
+    
+    
+    shoulder_back = {'x': 200, 'y': 150, 'z': 0, 'visibility': 0.9}
+    hip = {'x': 215, 'y': 300, 'z': 0, 'visibility': 0.9}
+    
+    back_angle = AngleCalculator.calculate_back_angle(shoulder_back, hip)
+    safe_print(f"\n4. Back Posture Test:")
+    safe_print(f"   Shoulder: ({shoulder_back['x']}, {shoulder_back['y']})")
+    safe_print(f"   Hip: ({hip['x']}, {hip['y']})")
+    safe_print(f"   Back angle from vertical: {back_angle:.1f}°")
+    safe_print(f"   Posture: {'Good' if back_angle < 15 else 'Poor'} (threshold: 15°)")
+    
+    
+    distance = AngleCalculator.calculate_euclidean_distance(shoulder, wrist)
+    safe_print(f"\n5. Distance Test:")
+    safe_print(f"   Distance shoulder→wrist: {distance:.1f} pixels")
+    
+    safe_print("\n" + "="*70)
+    safe_print("All angle calculator tests completed successfully")
+    safe_print("="*70)
