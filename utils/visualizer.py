@@ -206,3 +206,80 @@ class FeedbackVisualizer:
         text_size = cv2.getTextSize(text, self.FONT, 0.6, 1)[0]
         text_x = width - text_size[0] - 20
         cv2.putText(frame, text, (text_x, height - 12), self.FONT, 0.6, (200, 200, 200), 1)
+
+def test_visualizer():
+    """Generates synthetic frames to verify visualization layout."""
+    print("="*70)
+    print("TESTING FEEDBACK VISUALIZER")
+    print("="*70)
+
+    
+    frame = np.zeros((720, 1280, 3), dtype=np.uint8)
+    frame[:] = (40, 40, 40)  # Dark gray background
+
+    
+    viz = FeedbackVisualizer()
+
+    
+    print("\n### TEST 1: Correct Form Visualization ###")
+    correct_feedback = {
+        'exercise': 'Bicep Curl',
+        'is_correct': True,
+        'score': 95,
+        'rules_passed': 4,
+        'rules_total': 4,
+        'angles': {
+            'elbow': 85.5,
+            'elbow_displacement': 45.2,
+            'wrist_alignment': 172.8,
+            'back_posture': 8.3
+        },
+        'issues': []
+    }
+
+    frame_correct = frame.copy()
+    frame_correct = viz.draw_complete_overlay(
+        frame_correct, correct_feedback,
+        frame_number=45, total_frames=120, fps=30
+    )
+
+    
+    cv2.imwrite('test_correct_form.jpg', frame_correct)
+    print("Saved 'test_correct_form.jpg'")
+    
+
+    
+    print("\n### TEST 2: Incorrect Form with Issues ###")
+    incorrect_feedback = {
+        'exercise': 'Lateral Raise',
+        'is_correct': False,
+        'score': 60,
+        'rules_passed': 2,
+        'rules_total': 4,
+        'angles': {
+            'left_wrist_alignment': 45.7,
+            'right_wrist_alignment': 48.2,
+            'symmetry': 0.78,
+            'left_elbow': 158.3,
+            'back_posture': 12.1
+        },
+        'issues': [
+            "Arms not raised fully: L:46px R:48px from shoulder (max 30px)",
+            "Uneven arms: 78% symmetry (need >85%)",
+            "Elbow too bent: 158° (keep 165-175°)"
+        ]
+    }
+
+    frame_incorrect = frame.copy()
+    frame_incorrect = viz.draw_complete_overlay(
+        frame_incorrect, incorrect_feedback,
+        frame_number=75, total_frames=120, fps=30
+    )
+
+    cv2.imwrite('test_incorrect_form.jpg', frame_incorrect)
+    print("Saved 'test_incorrect_form.jpg'")
+    
+
+    print("\n" + "="*70)
+    print("Visualization tests completed")
+    print("="*70)
