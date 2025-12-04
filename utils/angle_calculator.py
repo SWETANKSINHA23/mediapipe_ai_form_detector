@@ -140,3 +140,6 @@ class AngleCalculator:
         
 def calculate_elbow_angle(shoulder: Dict, elbow: Dict, wrist: Dict) -> float:
     return AngleCalculator.calculate_angle(shoulder, elbow, wrist)
+
+def calculate_wrist_shoulder_alignment(wrist: Dict, shoulder: Dict) -> Tuple[bool, float]:
+    return AngleCalculator.calculate_vertical_alignment(wrist, shoulder)
