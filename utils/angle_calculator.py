@@ -214,3 +214,6 @@ def test_angle_calculator():
     safe_print("\n" + "="*70)
     safe_print("All angle calculator tests completed successfully")
     safe_print("="*70)
+
+if __name__ == "__main__":
+    test_angle_calculator()
