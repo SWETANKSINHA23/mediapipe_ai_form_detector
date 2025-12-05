@@ -283,3 +283,6 @@ def test_visualizer():
     print("\n" + "="*70)
     print("Visualization tests completed")
     print("="*70)
+
+if __name__ == "__main__":
+    test_visualizer()
