@@ -33,3 +33,23 @@ class RollingAverageSmoother:
         if not self.buffer:
             return 0.0
         return float(np.mean(self.buffer))
+
+class SavitzkyGolaySmoother:
+    def __init__(self, window_length: int = 7, polyorder: int = 2):
+        self.window_length = window_length
+        self.polyorder = polyorder
+        
+    def smooth_series(self, series: List[float]) -> List[float]:
+        if not series:
+            return []
+            
+        if not SCIPY_AVAILABLE:
+            print("Warning: scipy not found, falling back to moving average")
+            return moving_average(series, self.window_length)
+        
+        try:
+            smoothed = savgol_filter(series, self.window_length, self.polyorder)
+            return smoothed.tolist()
+        except Exception as e:
+            print(f"Error in Savitzky-Golay smoothing: {e}")
+            return series
