@@ -128,3 +128,11 @@ class LandmarkSmoother:
         self.history = {}
 
 # Module-level helper functions
+
+def moving_average(series: List[float], window_size: int = 5) -> List[float]:
+    if not series:
+        return []
+    
+    window = np.ones(int(window_size))/float(window_size)
+    smoothed = np.convolve(series, window, 'same')
+    return smoothed.tolist()
