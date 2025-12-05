@@ -53,3 +53,30 @@ class SavitzkyGolaySmoother:
         except Exception as e:
             print(f"Error in Savitzky-Golay smoothing: {e}")
             return series
+
+class AngleSmoothingManager:
+    def __init__(self, window_size: int = 5):
+        self.window_size = window_size
+        
+        self.elbow_smoother = RollingAverageSmoother(window_size)
+        self.back_smoother = RollingAverageSmoother(window_size)
+        self.left_side_smoother = RollingAverageSmoother(window_size)
+        self.right_side_smoother = RollingAverageSmoother(window_size)
+        
+    def smooth_elbow(self, angle: float) -> float:
+        return self.elbow_smoother.add_value(angle)
+        
+    def smooth_back(self, angle: float) -> float:
+        return self.back_smoother.add_value(angle)
+    
+    def smooth_left_elbow(self, angle: float) -> float:
+        return self.left_side_smoother.add_value(angle)
+        
+    def smooth_right_elbow(self, angle: float) -> float:
+        return self.right_side_smoother.add_value(angle)
+        
+    def reset(self) -> None:
+        self.elbow_smoother.reset()
+        self.back_smoother.reset()
+        self.left_side_smoother.reset()
+        self.right_side_smoother.reset()
