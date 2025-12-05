@@ -80,3 +80,51 @@ class AngleSmoothingManager:
         self.back_smoother.reset()
         self.left_side_smoother.reset()
         self.right_side_smoother.reset()
+
+class LandmarkSmoother:
+    def __init__(self, window_size: int = 5):
+        self.window_size = window_size
+        self.history = {}
+
+    def update(self, landmarks: object) -> List[Dict[str, float]]:
+        if not landmarks:
+            return []
+
+        if hasattr(landmarks, 'landmark'):
+            landmark_list = landmarks.landmark
+        else:
+            landmark_list = landmarks
+
+        smoothed_landmarks = []
+        for i, lm in enumerate(landmark_list):
+            if i not in self.history:
+                self.history[i] = {
+                    'x': deque(maxlen=self.window_size),
+                    'y': deque(maxlen=self.window_size),
+                    'z': deque(maxlen=self.window_size),
+                    'v': deque(maxlen=self.window_size)
+                }
+            
+            val_x = getattr(lm, 'x', 0.0)
+            val_y = getattr(lm, 'y', 0.0)
+            val_z = getattr(lm, 'z', 0.0)
+            val_v = getattr(lm, 'visibility', 0.0)
+
+            self.history[i]['x'].append(val_x)
+            self.history[i]['y'].append(val_y)
+            self.history[i]['z'].append(val_z)
+            self.history[i]['v'].append(val_v)
+
+            smoothed_landmarks.append({
+                'x': np.mean(self.history[i]['x']),
+                'y': np.mean(self.history[i]['y']),
+                'z': np.mean(self.history[i]['z']),
+                'visibility': np.mean(self.history[i]['v']),
+            })
+            
+        return smoothed_landmarks
+    
+    def reset(self):
+        self.history = {}
+
+# Module-level helper functions
