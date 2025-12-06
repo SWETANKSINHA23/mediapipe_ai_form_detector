@@ -197,3 +197,6 @@ def _demo():
     safe_print("\n" + "="*60)
     safe_print("Demo completed successfully")
     safe_print("="*60)
+
+if __name__ == "__main__":
+    _demo()
