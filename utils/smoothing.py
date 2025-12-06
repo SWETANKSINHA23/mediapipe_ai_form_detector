@@ -136,3 +136,14 @@ def moving_average(series: List[float], window_size: int = 5) -> List[float]:
     window = np.ones(int(window_size))/float(window_size)
     smoothed = np.convolve(series, window, 'same')
     return smoothed.tolist()
+
+def smooth_angles_series(series: List[float],
+                         method: str = "savgol",
+                         window_size: int = 7) -> List[float]:
+    if method == "savgol":
+        smoother = SavitzkyGolaySmoother(window_length=window_size)
+        return smoother.smooth_series(series)
+    elif method == "ma":
+        return moving_average(series, window_size)
+    else:
+        return series
