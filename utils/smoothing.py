@@ -147,3 +147,53 @@ def smooth_angles_series(series: List[float],
         return moving_average(series, window_size)
     else:
         return series
+
+def _demo():
+    import sys
+
+
+    def safe_print(text):
+        try:
+            print(text)
+        except UnicodeEncodeError:
+            print(text.encode('utf-8', errors='ignore').decode('utf-8'))
+        sys.stdout.flush()
+
+    safe_print("="*60)
+    safe_print("SMOOTHING MODULE DEMO")
+    safe_print("="*60)
+
+    np.random.seed(42)
+    base_angle = 90.0
+    noise = np.random.normal(0, 5, 20)
+    raw_series = [base_angle + n for n in noise]
+
+    safe_print(f"Generated {len(raw_series)} noisy samples (Base 90°)")
+    
+    
+    safe_print("\n1. Online Smoothing (Rolling Average, window=5)")
+    ma_smoother = RollingAverageSmoother(window_size=5)
+    
+    print(f"{'Frame':<6} | {'Raw':<8} | {'Smoothed':<8}")
+    print("-" * 30)
+    
+    online_results = []
+    for i, raw in enumerate(raw_series):
+        smoothed = ma_smoother.add_value(raw)
+        online_results.append(smoothed)
+        if i < 10: 
+            print(f"{i:<6} | {raw:<8.1f} | {smoothed:<8.1f}")
+            
+            
+    safe_print("\n2. Offline Smoothing (Savitzky-Golay, window=7, poly=2)")
+    sg_smoothed = smooth_angles_series(raw_series, method='savgol', window_size=7)
+    
+    print(f"{'Frame':<6} | {'Raw':<8} | {'SG-Smooth':<8}")
+    print("-" * 30)
+    
+    for i in range(10): 
+        print(f"{i:<6} | {raw_series[i]:<8.1f} | {sg_smoothed[i]:<8.1f}")
+
+    safe_print("\n" + "="*60)
+    safe_print("Demo completed successfully")
+    safe_print("="*60)
