@@ -217,3 +217,6 @@ The system generates artifacts in `output_videos/`:
 | :--- | :--- |
 | **`bicep_curl_output.mp4`** | Full session analysis with overlays. |
 | **`lateral_raise_output.mp4`** | Annotated lateral raise session showing angular limits. |
+
+
+<!-- typo fix -->
