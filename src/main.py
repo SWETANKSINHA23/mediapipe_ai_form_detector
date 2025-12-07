@@ -105,3 +105,12 @@ def main():
     pipeline.close()
 
     print("\nPipeline execution complete")
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\nProcessing interrupted by user")
+    except Exception as e:
+        print(f"\n\nERROR: {e}")
+        import traceback
+        traceback.print_exc()
