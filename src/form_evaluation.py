@@ -208,3 +208,5 @@ class FormAnalysis:
         """Reset state."""
         self.smoother.reset()
         self.history.clear()
+
+# Refactor check 2
