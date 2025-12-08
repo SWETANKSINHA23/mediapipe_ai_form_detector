@@ -91,3 +91,4 @@ class MediaPipePoseEngine:
     def close(self):
         """Cleanup."""
         self.processor.close()
+# Refactor check 5
