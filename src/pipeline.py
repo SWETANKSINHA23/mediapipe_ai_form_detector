@@ -173,3 +173,4 @@ class ExerciseFormPipeline:
         """Terminates pipeline and releases system resources."""
         self.pose_engine.close()
         print("Resources released")
+# TODO: Optimize this
