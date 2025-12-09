@@ -92,3 +92,5 @@ class MediaPipePoseEngine:
         """Cleanup."""
         self.processor.close()
 # Refactor check 5
+
+# Refactor check 12
