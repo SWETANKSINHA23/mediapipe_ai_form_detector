@@ -225,3 +225,6 @@ The system generates artifacts in `output_videos/`:
 Added more details.
 
 <!-- typo fix -->
+
+## Update
+Added more details.
