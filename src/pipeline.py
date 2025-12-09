@@ -174,3 +174,4 @@ class ExerciseFormPipeline:
         self.pose_engine.close()
         print("Resources released")
 # TODO: Optimize this
+# TODO: Optimize this
