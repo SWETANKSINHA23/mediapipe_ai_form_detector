@@ -287,3 +287,5 @@ def test_visualizer():
 if __name__ == "__main__":
     test_visualizer()
 # Refactor check 6
+
+# Refactor check 13
