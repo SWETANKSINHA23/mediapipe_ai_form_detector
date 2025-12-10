@@ -175,3 +175,4 @@ class ExerciseFormPipeline:
         print("Resources released")
 # TODO: Optimize this
 # TODO: Optimize this
+# TODO: Optimize this
