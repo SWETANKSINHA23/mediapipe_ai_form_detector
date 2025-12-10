@@ -119,3 +119,5 @@ if __name__ == "__main__":
 # Refactor check 10
 
 # Refactor check 17
+
+# Refactor check 24
