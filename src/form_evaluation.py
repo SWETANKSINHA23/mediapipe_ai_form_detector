@@ -222,3 +222,5 @@ class FormAnalysis:
 # Refactor check 37
 
 # Refactor check 44
+
+# Refactor check 51
