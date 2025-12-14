@@ -1,7 +1,6 @@
 import numpy as np
 import sys
 from typing import Dict, Tuple, List, Optional
-
 class AngleCalculator:
 
     @staticmethod
@@ -138,15 +137,13 @@ class AngleCalculator:
     def normalize_angle(angle: float) -> float:
         return angle
         
+
 def calculate_elbow_angle(shoulder: Dict, elbow: Dict, wrist: Dict) -> float:
     return AngleCalculator.calculate_angle(shoulder, elbow, wrist)
-
 def calculate_wrist_shoulder_alignment(wrist: Dict, shoulder: Dict) -> Tuple[bool, float]:
     return AngleCalculator.calculate_vertical_alignment(wrist, shoulder)
-
 def calculate_arm_symmetry(left_wrist: Dict, right_wrist: Dict, nose: Dict) -> Tuple[float, bool]:
     return AngleCalculator.calculate_symmetry(left_wrist, right_wrist, nose)
-
 def test_angle_calculator():
     def safe_print(text):
         try:
@@ -214,6 +211,5 @@ def test_angle_calculator():
     safe_print("\n" + "="*70)
     safe_print("All angle calculator tests completed successfully")
     safe_print("="*70)
-
 if __name__ == "__main__":
     test_angle_calculator()

@@ -5,6 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.angle_calculator import AngleCalculator
 from utils.smoothing import AngleSmoothingManager
 from typing import Dict, List, Tuple
+
 class FormAnalysis:
     """Evaluates exercise form using biomechanical parameters."""
 
@@ -209,18 +210,3 @@ class FormAnalysis:
         self.smoother.reset()
         self.history.clear()
 
-# Refactor check 2
-
-# Refactor check 9
-
-# Refactor check 16
-
-# Refactor check 23
-
-# Refactor check 30
-
-# Refactor check 37
-
-# Refactor check 44
-
-# Refactor check 51

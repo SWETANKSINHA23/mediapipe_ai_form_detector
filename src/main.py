@@ -5,6 +5,7 @@ import cv2
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.pipeline import ExerciseFormPipeline
+
 def main():
     #Entry point for the exercise form detection system.
     print("\n" + "="*70)
@@ -105,6 +106,7 @@ def main():
     pipeline.close()
 
     print("\nPipeline execution complete")
+
 if __name__ == "__main__":
     try:
         main()
@@ -114,16 +116,3 @@ if __name__ == "__main__":
         print(f"\n\nERROR: {e}")
         import traceback
         traceback.print_exc()
-# Refactor check 3
-
-# Refactor check 10
-
-# Refactor check 17
-
-# Refactor check 24
-
-# Refactor check 31
-
-# Refactor check 38
-
-# Refactor check 45

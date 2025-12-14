@@ -7,7 +7,6 @@ try:
     SCIPY_AVAILABLE = True
 except ImportError:
     SCIPY_AVAILABLE = False
-
 class RollingAverageSmoother:
     def __init__(self, window_size: int = 5):
         self.window_size = window_size
@@ -33,7 +32,6 @@ class RollingAverageSmoother:
         if not self.buffer:
             return 0.0
         return float(np.mean(self.buffer))
-
 class SavitzkyGolaySmoother:
     def __init__(self, window_length: int = 7, polyorder: int = 2):
         self.window_length = window_length
@@ -53,7 +51,6 @@ class SavitzkyGolaySmoother:
         except Exception as e:
             print(f"Error in Savitzky-Golay smoothing: {e}")
             return series
-
 class AngleSmoothingManager:
     def __init__(self, window_size: int = 5):
         self.window_size = window_size
@@ -80,7 +77,6 @@ class AngleSmoothingManager:
         self.back_smoother.reset()
         self.left_side_smoother.reset()
         self.right_side_smoother.reset()
-
 class LandmarkSmoother:
     def __init__(self, window_size: int = 5):
         self.window_size = window_size
@@ -128,7 +124,6 @@ class LandmarkSmoother:
         self.history = {}
 
 # Module-level helper functions
-
 def moving_average(series: List[float], window_size: int = 5) -> List[float]:
     if not series:
         return []
@@ -136,7 +131,6 @@ def moving_average(series: List[float], window_size: int = 5) -> List[float]:
     window = np.ones(int(window_size))/float(window_size)
     smoothed = np.convolve(series, window, 'same')
     return smoothed.tolist()
-
 def smooth_angles_series(series: List[float],
                          method: str = "savgol",
                          window_size: int = 7) -> List[float]:
@@ -147,7 +141,6 @@ def smooth_angles_series(series: List[float],
         return moving_average(series, window_size)
     else:
         return series
-
 def _demo():
     import sys
 
@@ -197,6 +190,5 @@ def _demo():
     safe_print("\n" + "="*60)
     safe_print("Demo completed successfully")
     safe_print("="*60)
-
 if __name__ == "__main__":
     _demo()

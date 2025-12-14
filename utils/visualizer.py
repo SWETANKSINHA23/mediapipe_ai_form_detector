@@ -3,7 +3,6 @@ import numpy as np
 from typing import Dict, List, Tuple, Optional
 
 """Visualization library for exercise feedback."""
-
 class FeedbackVisualizer:
     """Renders real-time feedback overlays for exercise analysis."""
     
@@ -206,7 +205,6 @@ class FeedbackVisualizer:
         text_size = cv2.getTextSize(text, self.FONT, 0.6, 1)[0]
         text_x = width - text_size[0] - 20
         cv2.putText(frame, text, (text_x, height - 12), self.FONT, 0.6, (200, 200, 200), 1)
-
 def test_visualizer():
     """Generates synthetic frames to verify visualization layout."""
     print("="*70)
@@ -283,19 +281,5 @@ def test_visualizer():
     print("\n" + "="*70)
     print("Visualization tests completed")
     print("="*70)
-
 if __name__ == "__main__":
     test_visualizer()
-# Refactor check 6
-
-# Refactor check 13
-
-# Refactor check 20
-
-# Refactor check 27
-
-# Refactor check 34
-
-# Refactor check 41
-
-# Refactor check 48

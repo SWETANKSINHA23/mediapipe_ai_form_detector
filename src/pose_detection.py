@@ -5,6 +5,7 @@ import mediapipe as mp
 import numpy as np
 import os
 from typing import Dict, Optional, Tuple, List
+
 class MediaPipePoseEngine:
     """Handles human pose estimation using MediaPipe."""
 
@@ -91,16 +92,3 @@ class MediaPipePoseEngine:
     def close(self):
         """Cleanup."""
         self.processor.close()
-# Refactor check 5
-
-# Refactor check 12
-
-# Refactor check 19
-
-# Refactor check 26
-
-# Refactor check 33
-
-# Refactor check 40
-
-# Refactor check 47

@@ -9,6 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.pose_detection import MediaPipePoseEngine
 from src.form_evaluation import FormAnalysis
 from utils.visualizer import FeedbackVisualizer
+
 class ExerciseFormPipeline:
     """End-to-end pipeline for exercise form analysis."""
     
@@ -173,10 +174,3 @@ class ExerciseFormPipeline:
         """Terminates pipeline and releases system resources."""
         self.pose_engine.close()
         print("Resources released")
-# TODO: Optimize this
-# TODO: Optimize this
-# TODO: Optimize this
-# TODO: Optimize this
-# TODO: Optimize this
-# TODO: Optimize this
-# TODO: Optimize this
